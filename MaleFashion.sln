@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaleFashion.EntityLayer", "MaleFashion.EntityLayer\MaleFashion.EntityLayer.csproj", "{064A1520-1543-4EBC-B13B-5987B60FD0B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaleFashion.DataAccessLayer", "MaleFashion.DataAccessLayer\MaleFashion.DataAccessLayer.csproj", "{F6E2FA45-C215-437E-8E97-05556EC70384}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaleFashion.BusinessLayer", "MaleFashion.BusinessLayer\MaleFashion.BusinessLayer.csproj", "{791BE1B0-E1C2-4D01-A510-F54627F5590A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaleFashion.DtoLayer", "MaleFashion.DtoLayer\MaleFashion.DtoLayer.csproj", "{650061A9-50A4-4142-85FD-F692399D30D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelFashion.APILayer", "ModelFashion.APILayer\ModelFashion.APILayer.csproj", "{4F1B7C9C-2149-45CB-A25A-B7F3435FF443}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaleFashion.SharedLayer", "MaleFasfion.SharedLayer\MaleFashion.SharedLayer.csproj", "{88856D05-042E-4138-A7DF-27176D7BB18A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{064A1520-1543-4EBC-B13B-5987B60FD0B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{064A1520-1543-4EBC-B13B-5987B60FD0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{064A1520-1543-4EBC-B13B-5987B60FD0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{064A1520-1543-4EBC-B13B-5987B60FD0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E2FA45-C215-437E-8E97-05556EC70384}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E2FA45-C215-437E-8E97-05556EC70384}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E2FA45-C215-437E-8E97-05556EC70384}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E2FA45-C215-437E-8E97-05556EC70384}.Release|Any CPU.Build.0 = Release|Any CPU
+		{791BE1B0-E1C2-4D01-A510-F54627F5590A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{791BE1B0-E1C2-4D01-A510-F54627F5590A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{791BE1B0-E1C2-4D01-A510-F54627F5590A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{791BE1B0-E1C2-4D01-A510-F54627F5590A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{650061A9-50A4-4142-85FD-F692399D30D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650061A9-50A4-4142-85FD-F692399D30D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650061A9-50A4-4142-85FD-F692399D30D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650061A9-50A4-4142-85FD-F692399D30D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F1B7C9C-2149-45CB-A25A-B7F3435FF443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F1B7C9C-2149-45CB-A25A-B7F3435FF443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F1B7C9C-2149-45CB-A25A-B7F3435FF443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F1B7C9C-2149-45CB-A25A-B7F3435FF443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88856D05-042E-4138-A7DF-27176D7BB18A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88856D05-042E-4138-A7DF-27176D7BB18A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88856D05-042E-4138-A7DF-27176D7BB18A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88856D05-042E-4138-A7DF-27176D7BB18A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2FC78907-C6BE-45FB-9027-EE1B81DF70F8}
+	EndGlobalSection
+EndGlobal
