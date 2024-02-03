@@ -11,6 +11,7 @@ using MaleFashion.DtoLayer.Dtos.AboutQuestionDtos;
 using MaleFashion.BusinessLayer.Mapping;
 using MaleFashion.SharedLayer.Enums;
 using MaleFashion.DataAccessLayer.UnitOfWork;
+using FluentValidation;
 
 
 namespace MaleFashion.BusinessLayer.Concrete
@@ -19,33 +20,53 @@ namespace MaleFashion.BusinessLayer.Concrete
     {
         private readonly IAboutQuestionDal _aboutQuestionDal;
         private readonly IUow _uow;
+        private readonly IValidator<CreateAboutQuestionDto> _createValidator;
+        private readonly IValidator<UpdateAboutQuestionDto> _updateValidator;
 
-        public AboutQuestionManager(IAboutQuestionDal aboutQuestionDal, IUow uow)
+        public AboutQuestionManager(IAboutQuestionDal aboutQuestionDal, IUow uow, IValidator<CreateAboutQuestionDto> createValidator, IValidator<UpdateAboutQuestionDto> updateValidator)
         {
             _aboutQuestionDal = aboutQuestionDal;
             _uow = uow;
+            _createValidator = createValidator;
+            _updateValidator = updateValidator;
         }
 
         public async Task<Response<CreateAboutQuestionDto>> TAddAsync(CreateAboutQuestionDto entity)
         {
             var newEntity = ObjectMapper.mapper.Map<AboutQuestion>(entity);
+            var validate = _createValidator.Validate(entity);
+            if (!validate.IsValid)
+            {
+                List<ValidationError> error = new List<ValidationError>();
+                foreach (var item in validate.Errors)
+                {
+                    error.Add(new ValidationError
+                    {
+                        Property = item.PropertyName,
+                        Message = item.ErrorMessage,
+                        Code = item.ErrorCode
+                    });
+
+                }
+                return Response<CreateAboutQuestionDto>.ValidatorErr(error, ResponseType.ValidationError);
+            }
             var value = await _aboutQuestionDal.AddAsync(newEntity);
             await _uow.CommitAsync();
 
-            if(value != null)
+            if (value != null)
             {
                 return Response<CreateAboutQuestionDto>.Success(entity, ResponseType.Success);
             }
-            return Response<CreateAboutQuestionDto>.Fail("Kayıt işlemi başarısız.",ResponseType.Fail);
+            return Response<CreateAboutQuestionDto>.Fail("Kayıt işlemi başarısız.", ResponseType.Fail);
         }
 
         public async Task<Response<NoContent>> TDelete(int id)
         {
             var value = await _aboutQuestionDal.GetByIdAsync(id);
-            _aboutQuestionDal.Delete(value.First());
+            _aboutQuestionDal.Delete(value);
             _uow.Commit();
-            var newValue = await _aboutQuestionDal.GetByIdAsync(id);
-            if (!newValue.Any())
+
+            if (value == null)
             {
                 return Response<NoContent>.Fail("Silme işlemi başarısız.", ResponseType.Fail);
             }
@@ -57,31 +78,47 @@ namespace MaleFashion.BusinessLayer.Concrete
             var values = await _aboutQuestionDal.GetAllAsync();
             var newValues = ObjectMapper.mapper.Map<List<ResultAboutQuestionDto>>(values);
 
-            if (!newValues.Any())
+            if (values != null)
             {
-                return Response<List<ResultAboutQuestionDto>>.Fail("Liste getirilemedi.", ResponseType.Fail);
+                return Response<List<ResultAboutQuestionDto>>.Success(newValues, ResponseType.Success);
             }
-            return Response<List<ResultAboutQuestionDto>>.Success(newValues, ResponseType.Success);
+            return Response<List<ResultAboutQuestionDto>>.Fail("Liste getirilemedi.", ResponseType.Fail);
         }
 
-        public async Task<Response<IEnumerable<ResultAboutQuestionDto>>> TGetByIdAsync(int id)
+        public async Task<Response<ResultAboutQuestionDto>> TGetByIdAsync(int id)
         {
             var value = await _aboutQuestionDal.GetByIdAsync(id);
-            var newValue = ObjectMapper.mapper.Map<IEnumerable<ResultAboutQuestionDto>>(value);
-            if(!newValue.Any())
+            var newValue = ObjectMapper.mapper.Map<ResultAboutQuestionDto>(value);
+            if (newValue == null)
             {
-                return Response<IEnumerable<ResultAboutQuestionDto>>.Fail("Liste getirilemedi.", ResponseType.Fail);
+                return Response<ResultAboutQuestionDto>.Fail("Liste getirilemedi.", ResponseType.Fail);
             }
-            return Response<IEnumerable<ResultAboutQuestionDto>>.Success(newValue, ResponseType.Success);
+            return Response<ResultAboutQuestionDto>.Success(newValue, ResponseType.Success);
         }
 
-        public Response<UpdateAboutQuestionDto> TUpdateAsync(UpdateAboutQuestionDto entity)
+        public Response<UpdateAboutQuestionDto> TUpdate(UpdateAboutQuestionDto entity)
         {
             var newEntity = ObjectMapper.mapper.Map<AboutQuestion>(entity);
-            var value = _aboutQuestionDal.UpdateAsync(newEntity);
+            var validate = _updateValidator.Validate(entity);
+            List<ValidationError> error = new List<ValidationError>();
+            if (!validate.IsValid)
+            {
+                foreach (var item in validate.Errors)
+                {
+                    error.Add(new ValidationError
+                    {
+                        Property = item.PropertyName,
+                        Message = item.ErrorMessage,
+                        Code = item.ErrorCode
+                    });
+
+                }
+                return Response<UpdateAboutQuestionDto>.ValidatorErr(error, ResponseType.ValidationError);
+            }
+            var value = _aboutQuestionDal.Update(newEntity);
             _uow.Commit();
 
-            if(value != null)
+            if (value != null)
             {
                 return Response<UpdateAboutQuestionDto>.Success(entity, ResponseType.Success);
             }

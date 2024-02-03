@@ -9,9 +9,9 @@ namespace MaleFashion.DataAccessLayer.Abstract
     public interface IGenericRepository<T>
     {
         Task<T> AddAsync(T entity);
-        T UpdateAsync(T entity);
+        T Update(T entity);
         void Delete(T entity);
-        Task<IEnumerable<T>> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(int id);
         Task<List<T>> GetAllAsync();
 
 

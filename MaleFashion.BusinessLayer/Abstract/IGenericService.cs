@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace MaleFashion.BusinessLayer.Abstract
 {
-    public interface IGenericService<TResult,TUpdate,TCreate>
+    public interface IGenericService<TResult,TUpdt,TCreate>
     {
         Task<Response<TCreate>> TAddAsync(TCreate entity);
-        Response<TUpdate> TUpdateAsync(TUpdate entity);
+        Response<TUpdt> TUpdate(TUpdt entity);
         Task<Response<NoContent>> TDelete(int id);
-        Task<Response<IEnumerable<TResult>>> TGetByIdAsync(int id);
+        Task<Response<TResult>> TGetByIdAsync(int id);
         Task<Response<List<TResult>>> TGetAllAsync();
     }
 }

@@ -36,13 +36,14 @@ namespace MaleFashion.DataAccessLayer.Concrete
             return values;
         }
 
-        public async Task<IEnumerable<T>> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            var value = await _context.Set<IEnumerable<T>>().FindAsync(id);
+            var value = await _context.Set<T>().FindAsync(id);
+            
             return value;
         }
 
-        public T UpdateAsync(T entity)
+        public T Update(T entity)
         {
              _context.Update(entity);
             return entity;

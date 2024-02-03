@@ -1,3 +1,4 @@
+using MaleFashion.BusinessLayer.Extensions;
 using MaleFashion.DataAccessLayer.Context;
 using MaleFashion.EntityLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -5,12 +6,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<MaleFashionContext>(opt =>
-{
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("SqlCon"));
-});
-
-builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<MaleFashionContext>();
+ProgramExtension.ProgramConfiguration(builder.Services, builder.Configuration);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
