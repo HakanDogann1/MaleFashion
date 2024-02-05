@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaleFashion.BusinessLayer.Concrete
+namespace MaleFashion.BusinessLayer.Concrate
 {
     public class BlogManager : IBlogService
     {

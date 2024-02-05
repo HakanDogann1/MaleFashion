@@ -14,7 +14,7 @@ using MaleFashion.DataAccessLayer.UnitOfWork;
 using FluentValidation;
 
 
-namespace MaleFashion.BusinessLayer.Concrete
+namespace MaleFashion.BusinessLayer.Concrate
 {
     public class AboutQuestionManager : IAboutQuestionService
     {

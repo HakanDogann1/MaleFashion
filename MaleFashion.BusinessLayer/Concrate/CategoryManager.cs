@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaleFashion.BusinessLayer.Concrete
+namespace MaleFashion.BusinessLayer.Concrate
 {
     public class CategoryManager : ICategoryService
     {
@@ -52,24 +52,50 @@ namespace MaleFashion.BusinessLayer.Concrete
             
         }
 
-        public Task<Response<NoContent>> TDelete(int id)
+        public async Task<Response<NoContent>> TDelete(int id)
         {
-            throw new NotImplementedException();
+            var value = await _categoryDal.GetByIdAsync(id);
+            if(value == null)
+            {
+                return Response<NoContent>.Fail("id bulunamadı.", ResponseType.Fail);
+            }
+            _categoryDal.Delete(value);
+            _uow.Commit();
+            return Response<NoContent>.Success(ResponseType.Success);
         }
 
-        public Task<Response<List<ResultCategoryDto>>> TGetAllAsync()
+        public async Task<Response<List<ResultCategoryDto>>> TGetAllAsync()
         {
-            throw new NotImplementedException();
+            var value = await _categoryDal.GetAllAsync();
+            
+            if(value != null)
+            {
+                var newValue = ObjectMapper.mapper.Map<List<ResultCategoryDto>>(value);
+                return Response<List<ResultCategoryDto>>.Success(newValue, ResponseType.Success);
+            }
+            return Response<List<ResultCategoryDto>>.Fail("Kategori listelenemedi.", ResponseType.Fail);
         }
 
-        public Task<Response<ResultCategoryDto>> TGetByIdAsync(int id)
+        public async Task<Response<ResultCategoryDto>> TGetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var value = await _categoryDal.GetByIdAsync(id);
+            var newValue = ObjectMapper.mapper.Map<ResultCategoryDto>(value);
+            if(value != null)
+            {
+                return Response<ResultCategoryDto>.Success(newValue, ResponseType.Success);
+            }
+            return Response<ResultCategoryDto>.Fail("Bu id ait veri bulunamadı",ResponseType.Fail);
         }
 
         public Response<UpdateCategoryDto> TUpdate(UpdateCategoryDto entity)
         {
-            throw new NotImplementedException();
+            var newEntity = ObjectMapper.mapper.Map<Category>(entity);
+            var value = _categoryDal.Update(newEntity);
+            if(value != null)
+            {
+                return Response<UpdateCategoryDto>.Success(entity, ResponseType.Success);
+            }
+            return Response<UpdateCategoryDto>.Fail("Güncelleme başarısız.", ResponseType.Fail);
         }
     }
 }

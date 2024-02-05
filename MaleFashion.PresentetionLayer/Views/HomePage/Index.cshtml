@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/PageLayout/Index.cshtml";
+}
+
+<!-- Hero Section Begin -->
+@await Component.InvokeAsync("HomePageHeoSectionViewComponent")
+<!-- Hero Section End -->
+<!-- Banner Section Begin -->
+@await Component.InvokeAsync("HomePageBannerViewComponent")
+<!-- Banner Section End -->
+<!-- Product Section Begin -->
+@await Component.InvokeAsync("HomePageProductSectionViewComponent")
+<!-- Product Section End -->
+<!-- Categories Section Begin -->
+@await Component.InvokeAsync("HomePageCategoriesSectionViewComponent")
+<!-- Categories Section End -->
+<!-- Instagram Section Begin -->
+@await Component.InvokeAsync("HomePageInstagramSectionViewComponent")
+<!-- Instagram Section End -->
+<!-- Latest Blog Section Begin -->
+@await Component.InvokeAsync("HomePageBlogSectionViewComponent")
+<!-- Latest Blog Section End -->
+

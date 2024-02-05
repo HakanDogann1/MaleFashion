@@ -1,13 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MaleFashion.PresentetionLayer.Models.HeaderModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MaleFashion.PresentetionLayer.ViewComponents
 {
     [ViewComponent(Name = "HomePageHeoSectionViewComponent")]
     public class HomePageHeoSectionViewComponent:ViewComponent
     {
-        public IViewComponentResult Invoke()
+       private readonly HttpClient _httpClient;
+
+        public HomePageHeoSectionViewComponent(HttpClient httpClient)
         {
-            return View();
+            _httpClient = httpClient;
+        }
+
+        public async Task<IViewComponentResult> InvokeAsync()
+        {
+            var value = await _httpClient.GetFromJsonAsync<List<ResultHeaderModel>>("https://localhost:7088/api/Headers");
+            return View(value);
         }
     }
 }

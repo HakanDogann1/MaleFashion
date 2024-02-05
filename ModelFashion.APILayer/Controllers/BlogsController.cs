@@ -8,11 +8,11 @@ namespace ModelFashion.APILayer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BlogController : APIControllerExtension
+    public class BlogsController : APIControllerExtension
     {
         private readonly IBlogService _blogService;
 
-        public BlogController(IBlogService blogService)
+        public BlogsController(IBlogService blogService)
         {
             _blogService = blogService;
         }
