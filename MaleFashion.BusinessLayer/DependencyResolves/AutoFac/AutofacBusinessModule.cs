@@ -30,6 +30,32 @@ namespace MaleFashion.BusinessLayer.DependencyResolves.AutoFac
             builder.RegisterType<HeaderManager>().As<IHeaderService>();
             builder.RegisterType<EfHeaderDal>().As<IHeaderDal>();
 
+            builder.RegisterType<BlogManager>().As<IBlogService>();
+            builder.RegisterType<EfBlogDal>().As<IBlogDal>();
+
+            builder.RegisterType<CouponCodeManager>().As<ICouponCodeService>();
+            builder.RegisterType<EfCouponCodeDal>().As<ICouponCodeDal>();
+
+            builder.RegisterType<ImageManager>().As<IImageService>();
+            builder.RegisterType<EfImageDal>().As<IImageDal>();
+
+            builder.RegisterType<PartnerManager>().As<IPartnerService>();
+            builder.RegisterType<EfPartnerDal>().As<IPartnerDal>();
+
+            builder.RegisterType<ProductManager>().As<IProductService>();
+            builder.RegisterType<EfProductDal>().As<IProductDal>();
+
+            builder.RegisterType<SizeManager>().As<ISizeService>();
+            builder.RegisterType<EfSizeDal>().As<ISizeDal>();
+
+            builder.RegisterType<SocialMediaManager>().As<ISocialMediaService>();
+            builder.RegisterType<EfSocialMediaDal>().As<ISocialMediaDal>();
+
+            builder.RegisterType<TagManager>().As<ITagService>();
+            builder.RegisterType<EfTagDal>().As<ITagDal>();
+
+            builder.RegisterType<TeamManager>().As<ITeamService>();
+            builder.RegisterType<EfTeamDal>().As<ITeamDal>();
            
         }
     }

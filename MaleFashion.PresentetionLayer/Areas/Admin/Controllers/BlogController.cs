@@ -1,13 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MaleFashion.PresentetionLayer.Models.BlogModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MaleFashion.PresentetionLayer.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class BlogController : Controller
     {
-        public IActionResult Index()
+        private readonly HttpClient _httpClient;
+
+        public BlogController(HttpClient httpClient)
         {
-            return View();
+            _httpClient = httpClient;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var value = await _httpClient.GetFromJsonAsync<List<ResultBlogModel>>("https://localhost:7088/api/Blogs");
+            return View(value);
         }
     }
 }
